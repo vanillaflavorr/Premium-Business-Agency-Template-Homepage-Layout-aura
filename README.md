@@ -30,6 +30,7 @@ If you need a complete corporate infrastructure without spending days coding it 
 | Wired Contact Form | ❌ | ✅ (Formspree / Resend Ready) |
 
 Preview Template: https://ephemeral-bonbon-7f90a1.netlify.app/
+
 Pro Version: https://rapidtemplates.lemonsqueezy.com/checkout/buy/1dfac127-c3e0-4ee0-8732-1f4f46af6a9d
 
 ---
