@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-ink-900 text-ink-50 antialiased;
+    font-family: theme('fontFamily.sans');
+  }
+  ::selection { @apply bg-gold-500 text-ink-900; }
+}
+
+@layer components {
+  .section-label {
+    @apply text-gold-500 text-[0.7rem] tracking-[0.2em] uppercase mb-4 block;
+  }
+  .section-title {
+    @apply font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold -tracking-[0.02em] mb-5;
+  }
+  .section-sub {
+    @apply text-ink-300 max-w-lg leading-relaxed text-base;
+  }
+  .btn-primary {
+    @apply bg-gold-500 text-ink-900 px-11 py-4 inline-block
+           text-[0.8rem] font-semibold tracking-[0.1em] uppercase
+           transition-all duration-300 hover:-translate-y-0.5
+           hover:shadow-[0_12px_40px_rgba(199,164,107,0.3)];
+  }
+  .btn-secondary {
+    @apply bg-transparent text-ink-50 px-11 py-4 inline-block
+           text-[0.8rem] font-semibold tracking-[0.1em] uppercase
+           border border-ink-600 transition-all duration-300
+           hover:border-gold-500 hover:-translate-y-0.5;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
