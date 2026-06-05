@@ -39,4 +39,4 @@ If you need a complete corporate infrastructure without spending days coding it 
 
 1. **Clone the repository:**
 ```bash
-   git clone [https://github.com/yourusername/launchpad-core.git](http
+   git clone [https://github.com/vanillaflavorr/Premium-Business-Agency-Template-Homepage-Layout-aura]
