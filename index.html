@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Iris — Brand & Digital Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              50: '#fdf8f0', 100: '#f5e8ce', 200: '#edd7a8',
+              300: '#e2c47d', 400: '#d7b45e', 500: '#c7a46b',
+              600: '#b08d54', 700: '#8a6e3f', 800: '#6b5330', 900: '#4d3b22',
+            },
+            ink: {
+              50: 'var(--ink-50)', 100: 'var(--ink-100)', 200: 'var(--ink-200)',
+              300: 'var(--ink-300)', 400: 'var(--ink-400)', 500: 'var(--ink-500)',
+              600: 'var(--ink-600)', 700: 'var(--ink-700)', 800: 'var(--ink-800)', 900: 'var(--ink-900)',
+            },
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans:  ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          animation: {
+            'marquee': 'marquee 30s linear infinite',
+          },
+          keyframes: {
+            marquee: {
+              '0%':   { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+  <!-- Production: replace CDN with `npm run build` → use ./dist/style.css instead -->
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="nav" class="fixed top-0 left-0 right-0 z-50 py-7 transition-all duration-300">
+    <div class="max-w-page mx-auto px-6 sm:px-10 flex items-center justify-between">
+      <a href="#" class="font-serif text-[1.6rem] font-semibold -tracking-[0.02em] text-ink-50 no-underline">
+        Studio<span class="text-gold-500">Iris</span>
+      </a>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="#work"     class="text-ink-300 no-underline text-[0.85rem] font-medium tracking-[0.08em] uppercase hover:text-ink-50 transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1.5px] after:bg-gold-500 after:transition-all hover:after:w-full">Work</a>
+        <a href="#about"    class="text-ink-300 no-underline text-[0.85rem] font-medium tracking-[0.08em] uppercase hover:text-ink-50 transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1.5px] after:bg-gold-500 after:transition-all hover:after:w-full">About</a>
+        <a href="#services" class="text-ink-300 no-underline text-[0.85rem] font-medium tracking-[0.08em] uppercase hover:text-ink-50 transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1.5px] after:bg-gold-500 after:transition-all hover:after:w-full">Services</a>
+        <a href="#contact"  class="text-ink-300 no-underline text-[0.85rem] font-medium tracking-[0.08em] uppercase hover:text-ink-50 transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1.5px] after:bg-gold-500 after:transition-all hover:after:w-full">Contact</a>
+        <button onclick="toggleTheme()" id="themeToggleDesktop"
+                class="w-9 h-9 flex items-center justify-center border border-ink-600 hover:border-gold-500 transition-colors bg-transparent cursor-pointer text-ink-50"
+                aria-label="Toggle theme">
+          <span class="theme-icon-dark block">☀️</span>
+          <span class="theme-icon-light hidden">🌙</span>
+        </button>
+        <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+                class="bg-transparent border border-gold-500 text-gold-500 px-7 py-2.5 text-[0.75rem] font-semibold tracking-[0.12em] uppercase cursor-pointer transition-all hover:bg-gold-500 hover:text-[#0a0a0a]">
+          Start a Project
+        </button>
+      </div>
+      <button id="menuToggle" class="md:hidden flex flex-col gap-[5px] bg-transparent border-none cursor-pointer" aria-label="Toggle menu">
+        <span class="w-6 h-[1.5px] bg-ink-50 transition-transform"></span>
+        <span class="w-6 h-[1.5px] bg-ink-50 transition-opacity"></span>
+        <span class="w-6 h-[1.5px] bg-ink-50 transition-transform"></span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden px-6 pt-6 pb-10 bg-ink-900/98 backdrop-blur-xl">
+      <div class="flex flex-col gap-6">
+        <a href="#work"     class="text-ink-300 no-underline text-base font-medium uppercase tracking-widest hover:text-ink-50">Work</a>
+        <a href="#about"    class="text-ink-300 no-underline text-base font-medium uppercase tracking-widest hover:text-ink-50">About</a>
+        <a href="#services" class="text-ink-300 no-underline text-base font-medium uppercase tracking-widest hover:text-ink-50">Services</a>
+        <a href="#contact"  class="text-ink-300 no-underline text-base font-medium uppercase tracking-widest hover:text-ink-50">Contact</a>
+        <div class="flex items-center gap-4">
+          <button onclick="toggleTheme()" id="themeToggleMobile"
+                  class="w-9 h-9 flex items-center justify-center border border-ink-600 hover:border-gold-500 transition-colors bg-transparent cursor-pointer text-ink-50"
+                  aria-label="Toggle theme">
+            <span class="theme-icon-dark block">☀️</span>
+            <span class="theme-icon-light hidden">🌙</span>
+          </button>
+          <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+                  class="bg-gold-500 text-[#0a0a0a] py-3 text-sm font-semibold tracking-widest uppercase border-none cursor-pointer">
+            Start a Project
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-24">
+    <div class="absolute inset-0 pointer-events-none"
+         style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(199,164,107,0.08), transparent 70%),
+                        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(199,164,107,0.05), transparent 60%);">
+    </div>
+    <div class="absolute inset-0 pointer-events-none"
+         style="background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                                  linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+                background-size: 80px 80px;">
+    </div>
+    <div class="max-w-page mx-auto px-6 sm:px-10 w-full relative z-10">
+      <div class="inline-flex items-center gap-2 border border-gold-500/30 px-4 py-1.5 text-[0.7rem] tracking-[0.15em] uppercase text-gold-500 mb-10 reveal">
+        <span class="w-[5px] h-[5px] rounded-full bg-gold-500 inline-block"></span>
+        Est. 2018
+      </div>
+      <h1 class="font-serif text-[clamp(3rem,7vw,7rem)] font-semibold leading-[1.05] -tracking-[0.03em] max-w-[900px] reveal">
+        Where vision<br/>meets <em class="not-italic text-gold-500">craft</em>
+      </h1>
+      <p class="text-lg text-ink-300 max-w-[520px] mt-7 leading-relaxed reveal">
+        We partner with ambitious brands to create distinctive digital experiences that drive culture and build lasting value.
+      </p>
+      <div class="flex gap-5 mt-12 reveal">
+        <a href="#work" class="btn-primary">View Our Work</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+      <div class="flex gap-12 sm:gap-16 mt-20 pt-10 border-t border-white/5 reveal">
+        <div>
+          <span class="font-serif text-4xl sm:text-[2.4rem] text-ink-50 countup" data-target="120">0</span>
+          <span class="block text-[0.7rem] tracking-[0.1em] uppercase text-ink-400 mt-1">Projects Delivered</span>
+        </div>
+        <div>
+          <span class="font-serif text-4xl sm:text-[2.4rem] text-ink-50 countup" data-target="38">0</span>
+          <span class="block text-[0.7rem] tracking-[0.1em] uppercase text-ink-400 mt-1">Global Brands</span>
+        </div>
+        <div>
+          <span class="font-serif text-4xl sm:text-[2.4rem] text-ink-50 countup" data-target="7">0</span>
+          <span class="block text-[0.7rem] tracking-[0.1em] uppercase text-ink-400 mt-1">Years of Craft</span>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-ink-400 text-[0.6rem] tracking-[0.15em] uppercase reveal">
+      <span>Scroll</span>
+      <div class="w-px h-10" style="background: linear-gradient(to bottom, #c7a46b, transparent);"></div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section class="py-20 border-t border-b border-white/5 reveal">
+    <div class="max-w-page mx-auto px-6 sm:px-10">
+      <p class="text-center text-[0.65rem] tracking-[0.2em] uppercase text-ink-400 mb-10">Trusted by leading brands</p>
+      <div class="flex justify-between items-center flex-wrap gap-8 opacity-40">
+        <span class="font-serif text-[1.4rem] text-ink-50">Luminara</span>
+        <span class="font-serif text-[1.4rem] text-ink-50">Atlas &amp; Co.</span>
+        <span class="font-serif text-[1.4rem] text-ink-50">Veridian</span>
+        <span class="font-serif text-[1.4rem] text-ink-50">Northpoint</span>
+        <span class="font-serif text-[1.4rem] text-ink-50">Meridian</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="py-32 reveal">
+    <div class="max-w-page mx-auto px-6 sm:px-10">
+      <span class="section-label">Selected Work</span>
+      <h2 class="section-title">Recent projects</h2>
+      <p class="section-sub">Each engagement is a collaboration built on trust, ambition, and a shared pursuit of the extraordinary.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+        <div class="group relative overflow-hidden cursor-pointer aspect-[4/3] bg-ink-800">
+          <div class="w-full h-full bg-ink-800 flex items-center justify-center">
+            <div class="relative w-40 h-40">
+              <div class="absolute inset-0 rounded-full border border-gold-500/15"></div>
+              <div class="absolute inset-8 rounded-full border border-white/5"></div>
+              <div class="absolute left-1/2 top-0 bottom-0 w-px bg-white/5"></div>
+              <div class="absolute top-1/2 left-0 right-0 h-px bg-white/5"></div>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-10 translate-y-5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+            <span class="text-[0.65rem] tracking-[0.15em] uppercase text-gold-500">Brand Identity</span>
+            <h3 class="font-serif text-2xl font-medium text-ink-50 mt-1">Luminara</h3>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden cursor-pointer aspect-[4/3] bg-ink-800">
+          <div class="w-full h-full bg-ink-800 flex items-center justify-center">
+            <div class="relative">
+              <svg width="160" height="160" viewBox="0 0 160 160">
+                <polygon points="80,20 140,120 20,120" fill="none" stroke="rgba(199,164,107,0.12)" stroke-width="1"/>
+                <polygon points="80,42 115,110 45,110" fill="none" stroke="rgba(199,164,107,0.06)" stroke-width="0.5"/>
+              </svg>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-10 translate-y-5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+            <span class="text-[0.65rem] tracking-[0.15em] uppercase text-gold-500">Web Platform</span>
+            <h3 class="font-serif text-2xl font-medium text-ink-50 mt-1">Atlas &amp; Co.</h3>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden cursor-pointer aspect-[4/3] md:col-span-2 md:aspect-[3/1] bg-ink-800">
+          <div class="w-full h-full bg-ink-800 flex items-center justify-center">
+            <div class="flex gap-12">
+              <div class="w-20 h-20 border border-gold-500/8"></div>
+              <div class="w-28 h-28 border border-gold-500/6 -mt-4"></div>
+              <div class="w-16 h-16 border border-gold-500/10 mt-4"></div>
+              <div class="w-24 h-24 border border-gold-500/7 -mt-2"></div>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-10 translate-y-5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+            <span class="text-[0.65rem] tracking-[0.15em] uppercase text-gold-500">Digital Ecosystem</span>
+            <h3 class="font-serif text-2xl font-medium text-ink-50 mt-1">Veridian — Full Rebrand</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section class="py-14 border-t border-b border-white-5 overflow-hidden">
+    <div class="flex gap-16 whitespace-nowrap animate-marquee">
+      <span class="font-serif text-6xl sm:text-7xl font-medium text-white/5 -tracking-[0.02em]">
+        Luxury is in the details ✦ <em class="not-italic text-gold-500/15">Studio Iris</em> ✦ Purpose over polish ✦
+      </span>
+      <span class="font-serif text-6xl sm:text-7xl font-medium text-white/5 -tracking-[0.02em]">
+        Luxury is in the details ✦ <em class="not-italic text-gold-500/15">Studio Iris</em> ✦ Purpose over polish ✦
+      </span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-32 reveal">
+    <div class="max-w-page mx-auto px-6 sm:px-10">
+      <span class="section-label">About</span>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center mt-16">
+        <div class="aspect-[4/5] bg-ink-800 relative overflow-hidden flex items-center justify-center">
+          <div class="relative w-56 h-56">
+            <div class="absolute inset-0 rounded-full border border-gold-500/8"></div>
+            <div class="absolute inset-16 rounded-full border border-gold-500/5"></div>
+            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 224 224">
+              <path d="M 56 112 Q 84 70 112 112 Q 140 154 168 112" fill="none" stroke="rgba(199,164,107,0.1)" stroke-width="1"/>
+            </svg>
+            <div class="absolute top-1/2 left-0 right-0 h-px bg-white/5"></div>
+          </div>
+        </div>
+        <div>
+          <h2 class="font-serif text-[clamp(1.8rem,3vw,2.8rem)] font-semibold -tracking-[0.02em] leading-tight">
+            We believe in <em class="not-italic text-gold-500">substance</em> over spectacle
+          </h2>
+          <p class="text-ink-300 mt-6 leading-relaxed">
+            Founded in 2018, Studio Iris is a small, tight-knit team of strategists, designers, and engineers. We work with founders and leadership teams who care deeply about how their brand looks, feels, and performs in the world.
+          </p>
+          <p class="text-ink-300 mt-4 leading-relaxed">
+            Every project begins with understanding — not assumptions. We immerse ourselves in your business, your audience, and your ambitions before ever opening a design tool.
+          </p>
+          <div class="grid grid-cols-2 gap-10 mt-12 pt-10 border-t border-white-5">
+            <div>
+              <dt class="text-[0.65rem] tracking-[0.15em] uppercase text-ink-400 mb-1.5">Founded</dt>
+              <dd class="text-ink-50">2018 · London</dd>
+            </div>
+            <div>
+              <dt class="text-[0.65rem] tracking-[0.15em] uppercase text-ink-400 mb-1.5">Team</dt>
+              <dd class="text-ink-50">14 across 3 continents</dd>
+            </div>
+            <div>
+              <dt class="text-[0.65rem] tracking-[0.15em] uppercase text-ink-400 mb-1.5">Approach</dt>
+              <dd class="text-ink-50">Strategy-first, design-led</dd>
+            </div>
+            <div>
+              <dt class="text-[0.65rem] tracking-[0.15em] uppercase text-ink-400 mb-1.5">Clients</dt>
+              <dd class="text-ink-50">Startups to Fortune 500</dd>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-32 bg-ink-800/50 reveal">
+    <div class="max-w-page mx-auto px-6 sm:px-10">
+      <span class="section-label">Expertise</span>
+      <h2 class="section-title">What we do</h2>
+      <p class="section-sub">From brand strategy to product design, we offer a tightly integrated set of capabilities.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px mt-16 bg-white-5">
+        <div class="bg-ink-900 p-12 sm:p-14 hover:bg-ink-800/30 transition-colors">
+          <span class="text-3xl block mb-6">✦</span>
+          <h3 class="font-serif text-xl font-medium mb-3.5">Brand Strategy</h3>
+          <p class="text-ink-400 text-sm leading-relaxed">Positioning, narrative, and visual identity that sets you apart and connects with the right people.</p>
+          <span class="inline-block mt-7 text-gold-500 text-xl transition-transform hover:translate-x-1">→</span>
+        </div>
+        <div class="bg-ink-900 p-12 sm:p-14 hover:bg-ink-800/30 transition-colors">
+          <span class="text-3xl block mb-6">◆</span>
+          <h3 class="font-serif text-xl font-medium mb-3.5">Digital Design</h3>
+          <p class="text-ink-400 text-sm leading-relaxed">Websites, platforms, and interfaces that are as functional as they are beautiful.</p>
+          <span class="inline-block mt-7 text-gold-500 text-xl transition-transform hover:translate-x-1">→</span>
+        </div>
+        <div class="bg-ink-900 p-12 sm:p-14 hover:bg-ink-800/30 transition-colors">
+          <span class="text-3xl block mb-6">◈</span>
+          <h3 class="font-serif text-xl font-medium mb-3.5">Art Direction</h3>
+          <p class="text-ink-400 text-sm leading-relaxed">Campaigns, creative concepts, and visual systems that command attention.</p>
+          <span class="inline-block mt-7 text-gold-500 text-xl transition-transform hover:translate-x-1">→</span>
+        </div>
+        <div class="bg-ink-900 p-12 sm:p-14 hover:bg-ink-800/30 transition-colors">
+          <span class="text-3xl block mb-6">▣</span>
+          <h3 class="font-serif text-xl font-medium mb-3.5">Product Design</h3>
+          <p class="text-ink-400 text-sm leading-relaxed">End-to-end product development from concept to launch, with an emphasis on craft.</p>
+          <span class="inline-block mt-7 text-gold-500 text-xl transition-transform hover:translate-x-1">→</span>
+        </div>
+        <div class="bg-ink-900 p-12 sm:p-14 hover:bg-ink-800/30 transition-colors">
+          <span class="text-3xl block mb-6">◇</span>
+          <h3 class="font-serif text-xl font-medium mb-3.5">Content &amp; Copy</h3>
+          <p class="text-ink-400 text-sm leading-relaxed">Words that carry your brand voice across every touchpoint with clarity and conviction.</p>
+          <span class="inline-block mt-7 text-gold-500 text-xl transition-transform hover:translate-x-1">→</span>
+        </div>
+        <div class="bg-ink-900 p-12 sm:p-14 hover:bg-ink-800/30 transition-colors">
+          <span class="text-3xl block mb-6">○</span>
+          <h3 class="font-serif text-xl font-medium mb-3.5">Motion &amp; Identity</h3>
+          <p class="text-ink-400 text-sm leading-relaxed">Moving brand systems, guidelines, and assets that bring your identity to life.</p>
+          <span class="inline-block mt-7 text-gold-500 text-xl transition-transform hover:translate-x-1">→</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="py-32 reveal">
+    <div class="max-w-page mx-auto px-6 sm:px-10">
+      <span class="section-label">Kind Words</span>
+      <h2 class="section-title">What our clients say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+        <div class="bg-ink-800/50 p-10 sm:p-14 border border-white-5 hover:border-gold-500/20 transition-colors">
+          <div class="text-gold-500 text-sm tracking-[4px] mb-6">★★★★★</div>
+          <blockquote class="font-serif text-lg font-medium leading-relaxed text-ink-50/85">
+            "Studio Iris didn't just redesign our website — they redefined how we talk about ourselves. The process was rigorous, and the result is nothing short of extraordinary."
+          </blockquote>
+          <div class="flex items-center gap-3.5 mt-7">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center font-semibold text-sm text-[#0a0a0a]">AM</div>
+            <div>
+              <div class="text-sm font-medium text-ink-50">Alex Morgan</div>
+              <div class="text-[0.7rem] text-ink-400">CEO, Luminara</div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-ink-800/50 p-10 sm:p-14 border border-white-5 hover:border-gold-500/20 transition-colors">
+          <div class="text-gold-500 text-sm tracking-[4px] mb-6">★★★★★</div>
+          <blockquote class="font-serif text-lg font-medium leading-relaxed text-ink-50/85">
+            "We've worked with a lot of agencies. Studio Iris is different — they care about the work more than they care about the relationship. That's rare, and it shows."
+          </blockquote>
+          <div class="flex items-center gap-3.5 mt-7">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center font-semibold text-sm text-[#0a0a0a]">JK</div>
+            <div>
+              <div class="text-sm font-medium text-ink-50">Jenna Khoury</div>
+              <div class="text-[0.7rem] text-ink-400">CMO, Northpoint</div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-ink-800/50 p-10 sm:p-14 border border-white-5 hover:border-gold-500/20 transition-colors">
+          <div class="text-gold-500 text-sm tracking-[4px] mb-6">★★★★★</div>
+          <blockquote class="font-serif text-lg font-medium leading-relaxed text-ink-50/85">
+            "The depth of thinking that went into our brand strategy was unlike anything we'd experienced. Every decision had a rationale. Every detail had intention."
+          </blockquote>
+          <div class="flex items-center gap-3.5 mt-7">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center font-semibold text-sm text-[#0a0a0a]">DR</div>
+            <div>
+              <div class="text-sm font-medium text-ink-50">David Rosen</div>
+              <div class="text-[0.7rem] text-ink-400">Founder, Meridian</div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-ink-800/50 p-10 sm:p-14 border border-white-5 hover:border-gold-500/20 transition-colors">
+          <div class="text-gold-500 text-sm tracking-[4px] mb-6">★★★★★</div>
+          <blockquote class="font-serif text-lg font-medium leading-relaxed text-ink-50/85">
+            "They pushed us to be braver than we were comfortable with — and it paid off. Our engagement metrics doubled within three months of launch."
+          </blockquote>
+          <div class="flex items-center gap-3.5 mt-7">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center font-semibold text-sm text-[#0a0a0a]">SL</div>
+            <div>
+              <div class="text-sm font-medium text-ink-50">Sophia Lin</div>
+              <div class="text-[0.7rem] text-ink-400">Director of Brand, Veridian</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="py-32 text-center relative reveal">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-4/5 h-px"
+         style="background: linear-gradient(90deg, transparent, rgba(199,164,107,0.3), transparent);">
+    </div>
+    <div class="max-w-page mx-auto px-6 sm:px-10">
+      <h2 class="font-serif text-[clamp(2.4rem,5vw,4.4rem)] font-semibold -tracking-[0.02em] max-w-[700px] mx-auto mb-6">
+        Let's make something <em class="not-italic text-gold-500">remarkable</em> together
+      </h2>
+      <p class="text-ink-300 max-w-[480px] mx-auto mb-10">We're always looking for ambitious partners. Tell us about your project, and we'll take it from there.</p>
+      <a href="mailto:hello@studioiris.com" class="btn-primary">Start a Conversation</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white-5 py-14">
+    <div class="max-w-page mx-auto px-6 sm:px-10 flex flex-wrap items-end justify-between gap-8">
+      <div>
+        <a href="#" class="font-serif text-[1.3rem] font-semibold -tracking-[0.02em] text-ink-50 no-underline">
+          Studio<span class="text-gold-500">Iris</span>
+        </a>
+        <p class="text-ink-400 text-sm mt-1">Brand &amp; Digital Agency</p>
+      </div>
+      <div class="flex gap-8">
+        <a href="#work"     class="text-ink-400 no-underline text-sm hover:text-gold-500 transition-colors">Work</a>
+        <a href="#about"    class="text-ink-400 no-underline text-sm hover:text-gold-500 transition-colors">About</a>
+        <a href="#services" class="text-ink-400 no-underline text-sm hover:text-gold-500 transition-colors">Services</a>
+        <a href="#contact"  class="text-ink-400 no-underline text-sm hover:text-gold-500 transition-colors">Contact</a>
+      </div>
+      <p class="text-ink-400 text-sm">© 2026 Studio Iris</p>
+    </div>
+  </footer>
+
+  <script>
+    // ─── Theme toggle ───
+    const stored = localStorage.getItem('studio-iris-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', stored);
+    function toggleTheme() {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('studio-iris-theme', next);
+      document.querySelectorAll('.theme-icon-dark, .theme-icon-light').forEach(el => {
+        el.classList.toggle('hidden');
+        el.classList.toggle('block');
+      });
+    }
+    // Ensure correct icon on load
+    document.querySelectorAll('.theme-icon-dark, .theme-icon-light').forEach(el => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (el.classList.contains('theme-icon-dark')) el.classList.toggle('hidden', !isDark);
+      if (el.classList.contains('theme-icon-light')) el.classList.toggle('hidden', isDark);
+    });
+
+    // ─── Nav scroll ───
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+      if (window.scrollY > 60) {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        nav.style.background = isDark ? 'rgba(10,10,10,0.85)' : 'rgba(255,255,255,0.85)';
+        nav.style.backdropFilter = 'blur(20px)';
+        nav.style.padding = '16px 0';
+      } else {
+        nav.style.background = '';
+        nav.style.backdropFilter = '';
+        nav.style.padding = '';
+      }
+    });
+
+    // ─── Mobile menu ───
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu  = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('hidden');
+      menuToggle.classList.toggle('active');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // ─── Count-up ───
+    const counters = document.querySelectorAll('.countup');
+    function startCountUp(el) {
+      const target = parseInt(el.getAttribute('data-target'));
+      const duration = 2000;
+      const start = performance.now();
+      function update(now) {
+        const t = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.floor(eased * target) + '+';
+        if (t < 1) requestAnimationFrame(update);
+        else el.textContent = target + '+';
+      }
+      requestAnimationFrame(update);
+    }
+
+    // ─── Intersection Observer ───
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          if (entry.target.id === 'hero' || entry.target.closest('#hero')) {
+            counters.forEach(startCountUp);
+          }
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal, #hero').forEach(el => observer.observe(el));
+
+    // ─── Smooth scroll offset ───
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+  <style>
+    :root {
+      --ink-50:  #0a0a0a; --ink-100: #1c1b18; --ink-200: #2d2c27;
+      --ink-300: #4a4942; --ink-400: #6b6a62; --ink-500: #8f8e85;
+      --ink-600: #b8b7ae; --ink-700: #d0cfc8; --ink-800: #e8e7e0; --ink-900: #f5f5f0;
+      --surface: #ffffff; --bg-subtle: rgba(0,0,0,0.04); --border: rgba(0,0,0,0.07);
+    }
+    [data-theme="dark"] {
+      --ink-50:  #f5f5f0; --ink-100: #e0dfd8; --ink-200: #b8b7ae;
+      --ink-300: #8f8e85; --ink-400: #6b6a62; --ink-500: #4a4942;
+      --ink-600: #2d2c27; --ink-700: #1c1b18; --ink-800: #0d0d0b; --ink-900: #0a0a0a;
+      --surface: #0d0d0b; --bg-subtle: rgba(255,255,255,0.03); --border: rgba(255,255,255,0.05);
+    }
+    body { background: var(--ink-900); color: var(--ink-50); transition: background 0.3s, color 0.3s; }
+    .scrolled { transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s; }
+    .border-white-5 { border-color: var(--border); }
+    .bg-white-5 { background: var(--bg-subtle); }
+    .section-label { color: #c7a46b; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+    .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 2.25rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+    @media (min-width: 640px) { .section-title { font-size: 3rem; } }
+    @media (min-width: 1024px) { .section-title { font-size: 3.75rem; } }
+    .section-sub { color: var(--ink-300); max-width: 32rem; line-height: 1.625; font-size: 1rem; }
+    .btn-primary { background: #c7a46b; color: #0a0a0a; padding: 1rem 2.75rem; display: inline-block; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(199,164,107,0.3); }
+    .btn-secondary { background: transparent; color: var(--ink-50); padding: 1rem 2.75rem; display: inline-block; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--ink-600); transition: all 0.3s; }
+    .btn-secondary:hover { border-color: #c7a46b; transform: translateY(-2px); }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</body>
+</html>
