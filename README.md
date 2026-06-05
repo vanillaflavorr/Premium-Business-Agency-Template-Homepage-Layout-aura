@@ -4,6 +4,7 @@ Aura is a clean, single-page landing page template built with Next.js 14 and Tai
 
 This repository contains the production-ready frontend layout, optimized grid architectures, and typography configurations out of the box.
 
+Preview Template: https://ephemeral-bonbon-7f90a1.netlify.app/
 ---
 
 ## Features Included
@@ -29,7 +30,6 @@ If you need a complete corporate infrastructure without spending days coding it 
 | Smooth Scroll Animations | ❌ | ✅ (Framer Motion Integration) |
 | Wired Contact Form | ❌ | ✅ (Formspree / Resend Ready) |
 
-Preview Template: https://ephemeral-bonbon-7f90a1.netlify.app/
 
 Pro Version: https://rapidtemplates.lemonsqueezy.com/checkout/buy/1dfac127-c3e0-4ee0-8732-1f4f46af6a9d
 
