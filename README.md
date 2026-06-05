@@ -31,7 +31,7 @@ If you need a complete corporate infrastructure without spending days coding it 
 | Smooth Scroll Animations | ❌ | ✅ (Framer Motion Integration) |
 | Wired Contact Form | ❌ | ✅ (Formspree / Resend Ready) |
 
-[Get Instant Access to LaunchPad Pro Here]
+https://rapidtemplates.lemonsqueezy.com/checkout/buy/1dfac127-c3e0-4ee0-8732-1f4f46af6a9d
 
 ---
 
